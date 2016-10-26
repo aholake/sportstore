@@ -1,6 +1,15 @@
 
-angular.module("sportStore").controller("sportStoreCtrl", function($scope) {
-	$scope.data = {
-		products: [{"name":"Kayak","description":"A boar for one person","category":"Watersports","price":275,"id":"18bcb9a183bf2885"},{"name":"Lifejacket","description":"Protective and fashionable","category":"Watersports","price":48.96,"id":"3b63f5c461a949ca"},{"name":"Soccer Ball","description":"FIFA-approved size and weight","category":"Soccer","price":19.5,"id":"04479afa1f2c7825"},{"name":"Corner Flag","description":"Give your playing field a professional touch","category":"Soccer","price":34.95,"id":"13b69220a03dd865"},{"name":"Stadium","description":"Flat-packed 35,000-seat stadium","category":"Soccer","price":79000,"id":"055266368232c891"},{"name":"Thinking cap","description":"Improve your brain efficiency by 75%","category":"Chess","price":16,"id":"1039e0baea1e5888"},{"name":"Unsteady Chair","description":"Secretly give your opponent a disadvantage","category":"Chess","price":75,"id":"ee90c1b22774a89a"},{"name":"Bling-Bling King","description":"Gold-plated, diamond-studded King","category":"Chess","price":1200,"id":"937d097ddedd1827"}]
-	};
-});
+angular.module("sportStore")
+	.constant("dataUrl", "http://localhost:2403/products")
+	.controller("sportStoreCtrl", function($scope, $http, dataUrl) {
+		$scope.data = {};
+
+		$http.get(dataUrl)
+			.success(function(response) {
+				$scope.data.products = response;
+			})
+			.error(function(error){
+				$scope.data.error = error;
+			})
+
+	});
