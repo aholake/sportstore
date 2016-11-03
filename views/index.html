@@ -5,15 +5,17 @@
 		<link rel="stylesheet" type="text/css" href="../bootstrap-theme.css">
 		<script type="text/javascript" src="../angular.js"></script>
 		<script type="text/javascript">
-			angular.module("sportStore",["sportStoreFilter"]);
+			angular.module("sportStore",["sportStoreFilter", "cart"]);
 		</script>
 		<script type="text/javascript" src="../controllers/sportStore.js"></script>
 		<script type="text/javascript" src="../filters/customFilter.js"></script>
 		<script type="text/javascript" src="../controllers/productList.js"></script>
+		<script type="text/javascript" src="../components/cart/cart.js"></script>
 	</head>
 	<body class="container" ng-controller="sportStoreCtrl">
 		<div class="navbar navbar-inverse">
 			<a class="navbar-brand" href="#">SPORT STORE</a>
+			<cartSummary />
 		</div>
 		
 		<div class="alert alert-danger" ng-show="data.error">
