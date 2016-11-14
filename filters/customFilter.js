@@ -20,7 +20,6 @@ angular.module("sportStoreFilter",[])
 	})
 	.filter("range", function($filter) {
 		return function(data, page, size) {
-			console.log(size);
 			if(angular.isArray(data) && angular.isNumber(page) && angular.isNumber(size)) {
 				var startIndex = (page - 1) * size;
 				if(data.length < startIndex) {

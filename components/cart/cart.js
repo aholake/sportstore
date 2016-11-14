@@ -13,12 +13,13 @@ angular.module('cart', [])
                 }
 
                 if (!addedToExistingItem) {
-                    cartData.push({
+                    var newProduct = {
                         count: 1,
                         id: id,
                         name: name,
                         price: price
-                    });
+                    };
+                    cartData.push(newProduct);
                 }
             },
             removeProduct: function(id) {
@@ -40,19 +41,20 @@ angular.module('cart', [])
             restrict: "E",
             templateUrl: '../components/cart/cartSummary.html',
             controller: function($scope) {
-                var cartData = cart.getProducts;
+                var cartData = cart.getProducts();
                 $scope.total = function() {
                     var total = 0;
-                    angular.forEach(cartData, function(key, value) {
-                        total += value.price;
+                    angular.forEach(cartData, function(value, key){
+                        total += value.price * value.count;
                     });
+
                     return total;
                 }
 
                 $scope.itemCount = function() {
                     var count = 0;
                     angular.forEach(cartData, function(key, value) {
-                        count += value.count;
+                        count += key.count;
                     });
                     return count;
                 }
